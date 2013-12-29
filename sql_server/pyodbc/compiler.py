@@ -43,7 +43,7 @@ class SQLCompiler(compiler.SQLCompiler):
         # another run of it.
         if self.connection._DJANGO_VERSION >= 14:
             self.refcounts_before = self.query.alias_refcount.copy()
-        out_cols = self.get_columns(with_col_aliases)
+        out_cols = self.get_columns(with_col_aliases or do_offset)
         ordering, ordering_group_by, offset_params = \
             self._get_ordering(out_cols, supports_offset_clause or not do_offset)
 
